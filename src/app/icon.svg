@@ -1,0 +1,42 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background: Deep Grid Purple -->
+  <rect width="512" height="512" fill="#120424" />
+  
+  <!-- Subtle Scanline Texture (3% Opacity) -->
+  <pattern id="scanlines_pattern" width="100%" height="4" patternUnits="userSpaceOnUse">
+    <rect width="100%" height="2" fill="#FFFFFF" fill-opacity="0.03" />
+  </pattern>
+  <rect width="512" height="512" fill="url(#scanlines_pattern)" />
+
+  <!-- Composition Group (Centered) -->
+  <g transform="translate(256, 220)">
+    
+    <!-- Pixel Moon (Upper-Center) -->
+    <!-- Larger, simplified pixel moon for icon-level legibility -->
+    <path d="M-60 -120 h40 v20 h20 v20 h20 v40 h-20 v20 h-20 v20 h-40 v-20 h-20 v-20 h-20 v-40 h20 v-20 h20 v-20 Z" fill="#EAEAEA" />
+    <!-- Moon cutout (matching background color) -->
+    <path d="M-30 -100 h30 v20 h20 v40 h-20 v20 h-30 v-20 h-20 v-40 h20 v-20 Z" fill="#120424" />
+
+    <!-- Classic Window Glyph (Tucked at lower right of moon) -->
+    <g transform="translate(10, -20)">
+      <!-- Window Shadow/Outline -->
+      <rect x="0" y="0" width="84" height="64" fill="#000000" />
+      <!-- Window Body -->
+      <rect x="2" y="2" width="80" height="60" fill="#C0C0C0" />
+      <!-- Title Bar (Navy) -->
+      <rect x="2" y="2" width="80" height="16" fill="#000080" />
+      <!-- Title Bar Dots (Close/Min/Max) -->
+      <circle cx="74" cy="10" r="3" fill="#EAEAEA" />
+      <circle cx="64" cy="10" r="3" fill="#EAEAEA" />
+      <circle cx="54" cy="10" r="3" fill="#EAEAEA" />
+    </g>
+  </g>
+
+  <!-- Wordmark: 3AM (Centered Bottom) -->
+  <g transform="translate(256, 420)">
+    <!-- Drop Shadow (Lavender) -->
+    <text x="6" y="6" text-anchor="middle" font-family="'Silkscreen', 'VT323', monospace" font-size="140" font-weight="bold" fill="#B399FF">3AM</text>
+    <!-- Main Text (Bubblegum Pink) -->
+    <text x="0" y="0" text-anchor="middle" font-family="'Silkscreen', 'VT323', monospace" font-size="140" font-weight="bold" fill="#FF85B3">3AM</text>
+  </g>
+</svg>
