@@ -5,7 +5,6 @@ import { useWindowStore } from "@/lib/windowStore";
 import { parseDeepLink, writeDeepLink } from "@/lib/deepLink";
 import { WindowLayer } from "@/components/window/WindowLayer";
 import { DesktopIcon } from "@/components/desktop/DesktopIcon";
-import { ICON_LAYOUT } from "@/components/desktop/iconLayout";
 import { Taskbar } from "@/components/taskbar/Taskbar";
 import { Ticker } from "@/components/taskbar/Ticker";
 import { ShutdownOverlay } from "@/components/taskbar/ShutdownOverlay";
@@ -13,6 +12,10 @@ import { ContextMenu, useContextMenu } from "@/components/desktop/ContextMenu";
 import { BootScreen } from "@/components/boot/BootScreen";
 import { hasBooted, markBooted, clearBooted } from "@/lib/bootFlag";
 import { useIsMobile } from "@/lib/useIsMobile";
+
+const ICONS_PER_COLUMN = 5;
+const GRID_X = 100;
+const GRID_Y = 104;
 
 export function Desktop() {
   const open = useWindowStore((s) => s.open);
@@ -64,11 +67,11 @@ export function Desktop() {
         <div className={mobile ? "flex flex-wrap gap-1 p-2" : undefined}>
           {registry.map((app, i) => {
             // hidden only excludes an app from the Start menu; every registered
-            // app still gets a desktop icon. ICON_LAYOUT is an optional position
-            // override, else fall back to a column-flow layout.
-            const pos = ICON_LAYOUT.find((l) => l.appId === app.id);
-            const x = pos ? pos.x : 24 + Math.floor(i / 4) * 96;
-            const y = pos ? pos.y : 90 + (i % 4) * 96;
+            // app still gets a desktop icon. Icons auto-arrange in a column-flow
+            // grid (top-to-bottom, then next column) — user-positioned icons
+            // return once a backend can persist them.
+            const x = 24 + Math.floor(i / ICONS_PER_COLUMN) * GRID_X;
+            const y = 90 + (i % ICONS_PER_COLUMN) * GRID_Y;
             return (
               <DesktopIcon
                 key={app.id}

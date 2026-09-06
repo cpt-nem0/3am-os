@@ -94,7 +94,7 @@ export interface DesktopApp {
 }
 ```
 
-That's it—adding an app is one registry entry plus one component. A desktop icon and a Start menu entry appear automatically for every registered app (unless it's `hidden`, which only excludes it from the Start menu). If you want your icon somewhere specific on the desktop instead of the automatic column layout, add an optional position override in `src/components/desktop/iconLayout.ts`.
+That's it—adding an app is one registry entry plus one component. A desktop icon and a Start menu entry appear automatically for every registered app (unless it's `hidden`, which only excludes it from the Start menu). Icons auto-arrange in a tidy grid; user-customizable icon positions are planned for a future release.
 
 ## Styling Rules
 
