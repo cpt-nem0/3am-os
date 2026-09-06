@@ -69,15 +69,17 @@ export function Desktop() {
             // hidden only excludes an app from the Start menu; every registered
             // app still gets a desktop icon. Icons auto-arrange in a column-flow
             // grid (top-to-bottom, then next column) — user-positioned icons
-            // return once a backend can persist them.
-            const x = 24 + Math.floor(i / ICONS_PER_COLUMN) * GRID_X;
-            const y = 90 + (i % ICONS_PER_COLUMN) * GRID_Y;
+            // return once a backend can persist them. Trash is the classic
+            // exception: pinned to the bottom-left corner on desktop.
+            const trash = app.id === "trash";
+            const gridIndex = trash ? 0 : registry.slice(0, i).filter((a) => a.id !== "trash").length;
             return (
               <DesktopIcon
                 key={app.id}
                 app={app}
-                x={x}
-                y={y}
+                x={trash ? 24 : 24 + Math.floor(gridIndex / ICONS_PER_COLUMN) * GRID_X}
+                y={trash ? 16 : 90 + (gridIndex % ICONS_PER_COLUMN) * GRID_Y}
+                anchor={trash ? "bottom" : "top"}
                 mobile={mobile}
                 openOn={mobile ? "click" : "doubleClick"}
                 onOpen={() => { open(app.id, { mode: app.defaultMode }); writeDeepLink(app.id); }}

@@ -8,6 +8,7 @@ export function DesktopIcon({
   onOpen,
   openOn = "doubleClick",
   mobile = false,
+  anchor = "top",
 }: {
   app: DesktopApp;
   x: number;
@@ -15,6 +16,7 @@ export function DesktopIcon({
   onOpen: () => void;
   openOn?: "click" | "doubleClick";
   mobile?: boolean;
+  anchor?: "top" | "bottom";
 }) {
   return (
     <button
@@ -23,7 +25,13 @@ export function DesktopIcon({
           ? "flex w-20 flex-col items-center gap-1 p-1 text-center text-xs hover:bg-[color:var(--title-bar)]/20"
           : "absolute flex w-20 flex-col items-center gap-1 p-1 text-center text-xs hover:bg-[color:var(--title-bar)]/20"
       }
-      style={mobile ? { fontFamily: "var(--font-plex-mono)" } : { left: x, top: y, fontFamily: "var(--font-plex-mono)" }}
+      style={
+        mobile
+          ? { fontFamily: "var(--font-plex-mono)" }
+          : anchor === "bottom"
+            ? { left: x, bottom: y, fontFamily: "var(--font-plex-mono)" }
+            : { left: x, top: y, fontFamily: "var(--font-plex-mono)" }
+      }
       onClick={openOn === "click" ? onOpen : undefined}
       onDoubleClick={openOn === "doubleClick" ? onOpen : undefined}
       aria-label={app.title}
