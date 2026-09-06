@@ -1,0 +1,57 @@
+@import "tailwindcss";
+
+:root,
+[data-vibe="midnight"] {
+  --desktop-bg: #120424;
+  --chrome: #2b2b2b;
+  --window-bg: #2b2b2b;
+  --bevel-hi: #555555;
+  --bevel-lo: #0a0a0a;
+  --title-bar: #000080;
+  --title-text: #ffffff;
+  --text: #eaeaea;
+  --accent-pink: #ff85b3;
+  --accent-lavender: #b399ff;
+}
+
+[data-vibe="light"] {
+  --desktop-bg: #e0f8f5;
+  --chrome: #c0c0c0;
+  --window-bg: #ffffff;
+  --bevel-hi: #ffffff;
+  --bevel-lo: #808080;
+  --text: #000000;
+}
+
+body {
+  background: var(--desktop-bg);
+  color: var(--text);
+  font-family: var(--font-space-mono), monospace;
+}
+
+@layer base {
+  * {
+    border-radius: 0;
+  }
+}
+
+@utility bevel-raised {
+  border: 2px solid;
+  border-color: var(--bevel-hi) var(--bevel-lo) var(--bevel-lo) var(--bevel-hi);
+  background: var(--chrome);
+}
+@utility bevel-sunken {
+  border: 2px solid;
+  border-color: var(--bevel-lo) var(--bevel-hi) var(--bevel-hi) var(--bevel-lo);
+}
+.scanlines {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.03) 0 1px,
+    transparent 1px 2px
+  );
+}
